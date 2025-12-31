@@ -1,0 +1,31 @@
+Cài đặt môi trường
+tại thư mục cài đặt
+- python -m venv .venv
+- .venv/bin/activate
+- pip install -r requirements.txt
+Khởi động jupyterlab: jupyter lab
+
+Kết quả sau khi gán sẽ được lưu trong folder data bao gồm
+gán tương ứng giữa customer và agent theo id của từng danh mục gói bảo hiểm
+life_health.csv 
+motor.csv
+travel.csv
+
+kết quả còn lại sau khi gán là kết quả của agent bao gồm thông tin đã gán được bao nhiêu, còn lại bao nhiêu..
+output.csv
+
+mã nguồn chính được lưu trong main.ipynb
+môi trường yêu cầu java17, python 3.11
+
+Trong class Generators thì các tham số đầu vào
+p_ag_lh xác suất agent có khả năng phục vụ tư vấn gói life_health
+p_ag_mt xác suất agent có khả năng phục vụ tư vấn gói motor
+p_ag_tv xác suất agent có khả năng phục vụ tư vấn gói travel
+p_ct_lh xác suất customer cần đến gói bảo hiểm life_health
+p_ct_mt xác suất customer cần đến gói bảo hiểm motor
+p_ct_tv xác suất customer cần đến gói bảo hiểm travel
+ag_mu giá trị mu của phân phối chuẩn cho khả năng đảm nhiệm số lượng khách hàng của agent
+ag_sm giá trị sigma của phân phối chuẩn cho khả năng đảm nhiệm số lượng khách hàng của agent
+max_cap số lượng khách hàng mà 1 agent có thể đảm nhận
+num_customers số lượng khách hàng thiết lập
+num_agents số lượng agent thiết lập
