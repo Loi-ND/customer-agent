@@ -62,28 +62,69 @@ class Generator:
         
         agents = []
 
+        # for _ in range(self.num_agents):
+        #     id = _
+
+        #     life_health = False
+        #     motor = False
+        #     travel = False
+
+        #     while (not life_health) and (not motor) and (not travel):
+        #         p1 = random.random()
+        #         if p1 < self.p_ag_lh:
+        #             life_health = True
+                
+        #         p2 = random.random()
+        #         if p2 < self.p_ag_mt:
+        #             motor = True
+                
+        #         p3 = random.random()
+        #         if p3 < self.p_ag_tv:
+        #             travel = True
+        #     p = self.__gaussian()
+        #     capacity = int(p*self.max_cap)
+
+        #     agents.append({
+        #         "id": id,
+        #         "life_health": life_health,
+        #         "motor": motor,
+        #         "travel": travel,
+        #         "capacity": capacity
+        #     })
+        count1 = 0
+        count2 = 0
+        count3 = 0
         for _ in range(self.num_agents):
             id = _
-
+            capacities = [50, 70, 100]
             life_health = False
             motor = False
             travel = False
-
-            while (not life_health) and (not motor) and (not travel):
-                p1 = random.random()
-                if p1 < self.p_ag_lh:
-                    life_health = True
+            categories = [False, False, False]
+            p1 = 0.1
+            p2 = 0.15
+            p = random.random()
+            if p < p1:
+                count1 += 1
+                indexes = random.sample([0, 1, 2], k=1)
+                for i in indexes:
+                    categories[i] = True
                 
-                p2 = random.random()
-                if p2 < self.p_ag_mt:
-                    motor = True
+                life_health, motor, travel = categories
+            elif p < p1 + p2:
+                count2 += 1
+                indexes = random.sample([0, 1, 2], k=2)
+                for i in indexes:
+                    categories[i] = True
                 
-                p3 = random.random()
-                if p3 < self.p_ag_tv:
-                    travel = True
-            p = self.__gaussian()
-            capacity = int(p*self.max_cap)
-
+                life_health, motor, travel = categories
+            else:
+                count3 += 1
+                life_health = True
+                motor = True 
+                travel = True
+            idx = random.sample([0, 1, 2], k=1)[0]
+            capacity = capacities[idx]
             agents.append({
                 "id": id,
                 "life_health": life_health,
@@ -91,7 +132,7 @@ class Generator:
                 "travel": travel,
                 "capacity": capacity
             })
-        
+        print(f"c1: {count1}\nc2: {count2}\nc3: {count3}")
         agents = pd.DataFrame(agents)
         agents.to_csv("../data/agents.csv", index=False)
     
